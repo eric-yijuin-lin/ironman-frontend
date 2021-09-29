@@ -1,0 +1,33 @@
+<div>
+  <h1>使用者資訊</h1>
+  <hr>
+  <table border="1">
+    <tr>
+      <td rowspan="4">
+        <img src="../../assets/user icon.jpg">
+      </td>
+      <td colspan="2">ID</td>
+      <td>
+        <input type="number" value={{userInfo.userId}} readonly>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">User Name</td>
+      <td>
+        <input type="text" value={{userInfo.userName}}>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">Email</td>
+      <td>
+        <input type="email" value={{userInfo.email}}>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">Verified</td>
+      <td>
+        <input type="number" min="0" max="1" value={{userInfo.verified}}>
+      </td>
+    </tr>
+  </table>
+</div>
