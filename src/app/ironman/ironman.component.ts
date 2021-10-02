@@ -1,4 +1,6 @@
+import { IronmanService } from './../ironman.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class IronmanComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private ironmanService: IronmanService) { }
 
   @Input()
   userInfo: IronmanUser = {
@@ -24,27 +26,15 @@ export class IronmanComponent implements OnInit {
   userInfoChange = new EventEmitter<IronmanUser>();
 
   ngOnInit(): void {
-    const mockInfo = {
-      userId: 999,
-      userName: 'testUser',
-      email: 'test@test.mail',
-      verified: 0
-    }
-
-    setTimeout(() => {
-      this.testOuputEvent.emit(mockInfo)
-    }, 1000);
-
-    const modifiedInfo = {
-      userId: 2,
-      userName: 'Bob',
-      email: 'bob@test.mail',
-      verified: 1
-    }
-
-    setTimeout(() => {
-      this.userInfoChange.emit(modifiedInfo)
-    }, 1500);
+    this.route.paramMap.subscribe(map => {
+      const uid = map.get('id');
+      if (uid) {
+        this.ironmanService.getUserDetail(+uid) // 用加號把字串轉成數字
+          .subscribe(resp => {
+            this.userInfo = resp;
+          });
+      }
+    });
   }
 }
 

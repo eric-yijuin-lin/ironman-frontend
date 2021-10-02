@@ -21,9 +21,6 @@ export class IronmanFormAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.userModel.userName = 'timeeeeeee';
-    }, 1000);
   }
 
   onSubmit(form: NgForm): void {

@@ -2,7 +2,7 @@
 <hr>
 
 <table border="1">
-  <thead>
+  <thead [routerLink]="['/ironman/3']">
     <tr>
       <td>ID</td>
       <td>UserName</td>
@@ -24,7 +24,7 @@
         </ng-container>
       </td>
       <td>
-        <button *ngIf="user.verified == 1">編輯</button>
+        <button *ngIf="user.verified == 1" (click)="onEditUser(user.userId)">編輯</button>
       </td>
     </tr>
   </tbody>

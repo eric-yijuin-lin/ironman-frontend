@@ -5,10 +5,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: IronmanFormAddComponent },
+  { path: '', redirectTo: '/ironman-list', pathMatch: 'full' },
   { path: 'ironman/:id', component: IronmanComponent },
   { path: 'ironman-list', component: IronmanListComponent },
   { path: 'ironman-add', component: IronmanFormAddComponent },
+  { path: '**', component: IronmanListComponent }
 ];
 
 @NgModule({

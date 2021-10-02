@@ -1,4 +1,4 @@
-<div>
+<div [hidden]="userInfo.userId == 0">
   <h1>使用者資訊</h1>
   <hr>
   <table border="1">
@@ -26,8 +26,12 @@
     <tr>
       <td colspan="2">Verified</td>
       <td>
-        <input type="number" min="0" max="1" value={{userInfo.verified}}>
+        <input type="checkbox" checked={{userInfo.verified}}>
       </td>
     </tr>
   </table>
+</div>
+
+<div [hidden]="userInfo.userId > 0">
+  Loading
 </div>
