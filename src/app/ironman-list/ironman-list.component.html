@@ -1,45 +1,37 @@
-<h1>使用者列表</h1>
-<hr>
-
-<table border="1">
-  <thead [routerLink]="['/ironman/3']">
-    <tr>
-      <td>ID</td>
-      <td>UserName</td>
-      <td>Email</td>
-      <td>Verified</td>
-      <td></td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of userListFromApi">
-      <td>{{user.userId}}</td>
-      <td>{{user.userName}}</td>
-      <td>{{user.email}}</td>
-      <td>
-        <ng-container [ngSwitch]="user.verified">
-          <p *ngSwitchCase="1">已認證</p>
-          <a *ngSwitchCase="0" href="#">前往認證</a>
-          <p *ngSwitchDefault style="color: red;">BUG</p>
-        </ng-container>
-      </td>
-      <td>
-        <button *ngIf="user.verified == 1" (click)="onEditUser(user.userId)">編輯</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- <tr *ngFor="let user of userList">
-      <td>{{user.userId}}</td>
-      <td>{{user.userName}}</td>
-      <td>{{user.email}}</td>
-      <td [ngSwitch]="user.verified">
+<table mat-table [dataSource]="matTableDataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="userId">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+  </ng-container>
+  <ng-container matColumnDef="userName">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="verified">
+    <th mat-header-cell *matHeaderCellDef> Verified </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container [ngSwitch]="element.verified">
         <p *ngSwitchCase="1">已認證</p>
         <a *ngSwitchCase="0" href="#">前往認證</a>
         <p *ngSwitchDefault style="color: red;">BUG</p>
-      </td>
-      <td>
-        <button *ngIf="user.verified === 1">編輯</button>
-      </td>
-    </tr> -->
+      </ng-container>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="showEditButton">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.verified">
+        <button mat-raised-button color="primary" (click)="onEditUser(element.userId)">
+          編輯
+        </button>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

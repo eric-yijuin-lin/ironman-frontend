@@ -12,6 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { IronmanFormAddComponent } from './ironman-form-add/ironman-form-add.component';
 import { FormsModule } from '@angular/forms';
 
+import {MatTableModule} from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +31,14 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [IronmanService],
   bootstrap: [AppComponent]

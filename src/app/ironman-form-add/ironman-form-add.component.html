@@ -1,12 +1,14 @@
 <div [hidden]="submitted">
   <h1>新增使用者</h1>
-  <form (ngSubmit)="onSubmit(formInstance)" #formInstance="ngForm">
-    <label for="userName">UserName</label>
-    <input type="text" id="userName" [(ngModel)]="userModel.userName" name="userName" required minlength="2"
-      #userInput="ngModel">
-    <br>
-    <label for="email">Email</label>
-    <input type="email" id="email" [(ngModel)]="userModel.email" name="email" required email #emailInput="ngModel">
+  <form (ngSubmit)="onSubmit(formInstance)" #formInstance="ngForm" class="example-flex">
+    <mat-form-field appearance="fill">
+      <mat-label>UserName</mat-label>
+      <input matInput [(ngModel)]="userModel.userName" name="userName" required minlength="2" #userInput="ngModel">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="userModel.email" name="email" required email #emailInput="ngModel">
+    </mat-form-field>
 
     <div *ngIf="formInstance.invalid && formInstance.dirty">
       <p *ngIf="userInput.errors?.required" style="color: red;">
@@ -22,7 +24,9 @@
         email 格式錯誤
       </p>
     </div>
-    <button type="submit">新增</button>
+    <button type="submit" mat-raised-button color="primary">
+      編輯
+    </button>
   </form>
 </div>
 
